@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}
+Заказы
+{% endblock %}
+
+{% block main %} 
+
+<div class="container">
+	<div class="content my-5">
+		{% with messages = get_flashed_messages(True) %}
+		{% if messages %}
+		{% for category, message in messages %}
+		<p class="flash {{category}}">{{message}}</p>
+		{% endfor %}
+		{% endif %}
+		{% endwith %}
+		<div class="d-flex justify-content-between my-3">
+			<h1>Мои заказы</h1>
+			<!-- Button trigger modal -->
+            <h2>{{active_user.name}} {{active_user.surname}}, {{active_user.job}}</h2>
+		</div>
+		
+
+  {% if not orders%}
+  <h2>Список пуст!</h2>
+  {%else%}
+		<table class="table">
+			<thead>
+			  <tr>
+				<th scope="col">#</th>
+				
+				<th scope="col">Клиент</th>
+				<th scope="col">Тур</th>
+				<th scope="col">Дата</th>
+				<th scope="col">Длительность</th>
+	
+
+			  </tr>
+			</thead>
+			<tbody>
+				
+				{%for order,client,tur,worker in zip(orders,clients_list,tur_list,worker_list)%}
+			  <tr>
+				<th scope="row"></th>
+				<td>{{client.surname}} {{client.name}}</td>
+				<td>{{tur.title}}</td>
+				<td>{{tur.duration}} дней</td>
+				<td>{{order.date}}</td>
+			  </tr>
+			  {%endfor%}
+			
+			  </tr>
+			</tbody>
+		  </table>
+		  {%endif%}
+	</div>
+	
+</div>
+{% endblock %}
+     

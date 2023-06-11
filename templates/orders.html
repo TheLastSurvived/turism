@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% block title %}
+Заказы
+{% endblock %}
+
+{% block main %} 
+
+<div class="container">
+	<div class="content my-5">
+		{% with messages = get_flashed_messages(True) %}
+		{% if messages %}
+		{% for category, message in messages %}
+		<p class="flash {{category}}">{{message}}</p>
+		{% endfor %}
+		{% endif %}
+		{% endwith %}
+		<div class="d-flex justify-content-between my-3">
+			<h1>Заказы</h1>
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+				Добавить 
+			  </button>
+		</div>
+		
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel">Добавление заказа</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			<form method="post">
+				{% if not turs%}
+				<h4>Список туров пуст!  <a href="/tur"> Добавить...</a></h4>
+			
+		
+				{%else%}
+				<div class="form-group">
+					<label for="exampleInputEmail1">Услуга</label>
+					<select class="form-select" aria-label="Default select example" required name="tur">
+						{%for tur in turs%}
+					  <option value="{{tur.id}}">{{tur.title}}</option>
+						{%endfor%}
+					</select>				
+				  </div>
+				  
+				  <div class="form-group">
+					<label for="exampleInputPassword1">Клиент</label>
+					<select class="form-select" aria-label="Default select example" required name="client">
+						{%for client in clients%}
+					  <option value="{{client.id}}">{{client.surname}} {{client.name}} {{client.secondname}}</option>
+						{%endfor%}
+					</select>	
+				  </div>
+
+				<div class="form-group">
+				  <label for="exampleInputPassword1">Дата</label>
+				  <input type="date" class="form-control" id="exampleInputPassword1" required name="date">
+				</div>
+
+
+				<button type="submit" class="btn btn-primary">Добавить</button>
+				{%endif%}
+			</form>
+		</div>
+	
+	  </div>
+	</div>
+  </div>
+  {% if not orders%}
+  <h2>Список пуст!</h2>
+  {%else%}
+		<table class="table">
+			<thead>
+			  <tr>
+				<th scope="col">#</th>
+				
+				<th scope="col">Клиент</th>
+				<th scope="col">Тур</th>
+				<th scope="col">Дата</th>
+				<th scope="col">Длительность</th>
+				<th scope="col">Выполнил</th>
+				<th scope="col">#</th>
+				<th scope="col">#</th>
+			  </tr>
+			</thead>
+			<tbody>
+				
+				{%for order,client,tur,worker in zip(orders,clients_list,tur_list,worker_list)%}
+			  <tr>
+				<th scope="row"></th>
+				<td>{{client.surname}} {{client.name}}</td>
+				<td>{{tur.title}}</td>
+				
+				<td>{{order.date}}</td>
+				<td>{{tur.duration}} дней</td>
+				{%if worker%}
+				<td>{{worker.name}} {{worker.surname}}, {{worker.job}}</td>
+				{%else%}
+				<td>Самостоятельно</td>
+				{%endif%}
+			
+<td>				<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal{{order.id}}"> Изменить</button>
+</td>
+				<td><a href="/delete_order/{{order.id}}" class="btn btn-danger">Удалить</a></td>
+
+
+								 <!-- Modal -->
+  <div class="modal fade" id="exampleModal{{order.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel">Изменение заказа</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			<form method="post" action="">
+				<form method="post">
+					{% if not turs%}
+					<h4>Список туров пуст!  <a href="/tur"> Добавить...</a></h4>
+					{%else%}
+					<div class="form-group">
+						<label for="exampleInputEmail1">Услуга</label>
+						<select class="form-select" aria-label="Default select example" required name="tur">
+							{%for tur in turs%}
+						  <option value="{{tur.id}}">{{tur.title}}</option>
+							{%endfor%}
+						</select>				
+					  </div>
+					  
+					  <div class="form-group">
+						<label for="exampleInputPassword1">Клиент</label>
+						<select class="form-select" aria-label="Default select example" required name="client">
+							{%for client in clients%}
+						  <option value="{{client.id}}">{{client.surname}} {{client.name}} {{client.secondname}}</option>
+							{%endfor%}
+						</select>	
+					  </div>
+	
+					<div class="form-group">
+					  <label for="exampleInputPassword1">Дата</label>
+					  <input type="date" class="form-control" id="exampleInputPassword1" required name="date" value="{{order.date}}">
+					</div>
+	
+	
+					<button type="submit" class="btn btn-primary">Изменить</button>
+					{%endif%}
+				</form>
+		</div>
+	
+	  </div>
+	</div>
+  </div>
+			  </tr>
+			  {%endfor%}
+			
+			  </tr>
+			</tbody>
+		  </table>
+		  {%endif%}
+	</div>
+	
+</div>
+{% endblock %}
+     

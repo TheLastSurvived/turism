@@ -1,0 +1,302 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Студия отдыха</title>
+		<link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+		<!-- web-font -->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>
+		<!-- web-font -->
+		<!-- js -->
+		<script src="../static/js/jquery.min.js"></script>
+		<script src="../static/js/modernizr.custom.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<!-- js -->
+		<script src="../static/js/modernizr.custom.js"></script>
+		<!-- start-smoth-scrolling -->
+		<script type="text/javascript" src="../static/js/move-top.js"></script>
+		<script type="text/javascript" src="../static/js/easing.js"></script>
+		<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+		</script>
+		<!-- start-smoth-scrolling -->
+	</head>
+	<body>
+		<!-- header -->
+		<div class="header">
+			<div class="head-bg">
+				<!-- container -->
+				<div class="container">
+					<div class="head-logo">
+						<a href="/"><img src="../static/images/logo1.png" width="25%" alt="" /> </a>
+					</div>
+					<div class="top-nav">
+						<span class="menu"><img src="../static/images/menu.png" alt=""></span>
+							<ul class="cl-effect-1">
+								<li><a href="/">Главная</a></li>                                             
+								<li><a href="#about">О нас</a></li>
+								<li><a href="#form">Бронирование</a></li> 
+								<li><a href="/auth">Вход в систему</a></li> 
+							</ul>
+							<!-- script-for-menu -->
+							 <script>
+							   $( "span.menu" ).click(function() {
+								 $( "ul.cl-effect-1" ).slideToggle( 300, function() {
+								 // Animation complete.
+								  });
+								 });
+							</script>
+						<!-- /script-for-menu -->
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<!-- //container -->
+			</div>
+			<!-- container -->
+			<div class="container">
+				<!-- banner Slider starts Here -->
+					<script src="../static/js/responsiveslides.min.js"></script>
+					 <script>
+						// You can also use "$(window).load(function() {"
+						$(function () {
+						  // Slideshow 4
+						  $("#slider3").responsiveSlides({
+							auto: true,
+							pager: false,
+							nav: false,
+							speed: 500,
+							namespace: "callbacks",
+							before: function () {
+							  $('.events').append("<li>before event fired.</li>");
+							},
+							after: function () {
+							  $('.events').append("<li>after event fired.</li>");
+							}
+						  });
+					
+						});
+					  </script>
+					<!--//End-slider-script -->
+					<div  id="top" class="callbacks_container">
+						<ul class="rslides" id="slider3">
+							<li>
+								<div class="head-info">
+									<h1> Лучшее<span>лето на мальдивах</span></h1>
+									
+								</div>
+							</li>
+							<li>
+								<div class="head-info">
+									<h1>Выбрать <span>ТУР СТАЛО ЕЩЕ ПРОЩЕ </span></h1>
+								
+								</div>
+							</li>
+							<li>
+								<div class="head-info">
+									<h1>Полное<span>наслождение отдыхом</span></h1>
+							
+								</div>
+							</li>
+						</ul>
+					</div>
+
+			</div>
+			<!-- container -->
+		</div>
+		<!-- //header -->
+
+		<div class="about">
+			<!-- container -->
+			<div class="container">
+				<div class="about-info" id="about">
+					<h3>О нас</h3>
+					
+					<p>
+						Наша туристическая компания — команда профессионалов! Мы предлагаем Вам горящие туры и раннее бронирование на самых лучших курортах Болгарии, Черногории, Греции, Кипра, Испании, Италии, Турции, Египта, а так же экзотический отдых в Таиланде, Въетнаме, Шри-Ланке, Мексике, Доминикане, Кубе, Мальдивах и многое другое! Горящие туры и раннее бронирование — подбор тура онлайн Мы оказываем все виды туристических услуг: открытие виз, медицинское страхование, бронирование отелей и продажа авиабилетов, организация трансфера до аэропортов вылета. </p>
+					
+						<div class="about-banner"></div>
+					</div>
+			</div>
+			<!-- //container -->
+		</div>
+
+
+		<!-- banner-grids -->
+		<div class="banner-grids">
+			<!-- container -->
+			<div class="container">
+				<div class="banner-grid-info">
+					<h3>Лучшие туры</h3>
+					<p>.</p>
+				</div>
+				<div class="row">
+					<div class="col">
+						<img src="../static/images/6.jpg" width="100%" alt="" />
+						<div class="top-grid-info">
+							<h3>Турция</h3>
+							<p>Омываемая четырьмя морями и уютно расположившаяся между Европой и Азией, эта уникальная страна поразит вас своей первозданной природой, чистейшими пляжами, архитектурными шедеврами и особым гостеприимством. Отдых в Турции примечателен наличием большого выбора пляжных курортов, отелей, концепций, прекрасным качеством обслуживания и красивейшими лагунами Средиземного моря. Вылеты в Турцию осуществляются из Минска. Эта страна порадует вас новинками, специальными предложениями от отелей и системой «всё включено». Система «всё включено» позволяет избавиться от незапланированных расходов и лишних хлопот.</p>
+						</div>
+					</div>
+					<div class="col">
+						<img src="../static/images/3.jpg" width="100%" alt="" />
+						<div class="top-grid-info">
+							<h3>Доминикана</h3>
+							<p>Доминикана – страна райского климата, где лето длится круглый год. И это не метафора, ведь климат острова настолько мягок и приятен, что Колумб, высадившись после длительного плавания через Атлантику, решил, что попал в утерянный рай.
+								Отдых в Доминикане оценят любители пляжей, нетронутой природы и уникальной красоты подводного мира. Рифы Карибского моря полны удивительных рыб и животных, а пляжи манят чистотой и уединенностью. При этом уровень отелей в Доминиканской Республике отличается высоким качеством, а местная кухня приятно разнообразна.
+								Остров Гаити, где расположена Доминикана, не только прекрасен, но и велик, здесь есть, на что посмотреть туристам и фотографам.</p>
+						</div>
+					</div>
+					<div class="col">
+						<img src="../static/images/2.jpg" width="100%" alt="" />
+						<div class="top-grid-info">
+							<h3>Кипр</h3>
+							<P>Отдых на Кипре пользуется огромной популярностью у туристов. Сочетая экскурсионный отдых с пляжным, на Кипре можно не только познакомиться с наиболее яркими и запоминающимися памятниками архитектуры, но и насладиться захватывающей дух красотой первозданной природы, прекрасным мягким климатом и кристально чистым горным воздухом. Отдых на Кипре вместе с нами – это привлекательная цена и ваше смелое приключение с туроператором, которому стоит доверять. Путешествуйте, наслаждайтесь красотой Кипра и создавайте свои самые тёплые воспоминания!
+							</P>
+						</div>
+					</div>
+					<div class="col">
+						<img src="../static/images/4.jpg" width="100%" alt="" />
+						<div class="top-grid-info">
+							<h3>ОАЭ
+							</h3>
+							<p>Туры в ОАЭ из Минска – это ваше неповторимое путешествие в страну сбывшихся фантазий. Здесь вы найдёте абсолютно всё: сады посреди пустыни, рукотворные острова, самые современные чудеса света и волшебные парки развлечений. Так что если вы мечтаете о впечатляющем и необыкновенном отпуске, Арабские Эмираты – это то, что вам нужно! Отдых в ОАЭ удивительно многогранен и полон контрастов. Гостей ОАЭ круглый год ожидают бесконечные пляжи, тёплые воды Персидского залива, особая культура, цветущие города, арабская кухня, восточные базары и оазисы с виноградниками и финиковыми пальмами.</p>
+					</div>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<!-- //container -->
+		</div>
+		<!-- //banner-grids -->
+		<!-- before -->
+		<div class="before">
+			<!-- container -->
+			<div class="container">
+				<h2>ПОЧЕМУ СТОИТ ОБРАТИТЬСЯ К НАМ?</h2>
+				<div class="row">
+					<div class="col mt-5">
+						<h3>Оперативность в работе.</h3>
+						<p> Мы быстро реагируем при возникновении любых вопросов и помогаем осуществить путешествие даже в тех случаях, когда ваше время ограничено.
+						</p>
+					</div>
+					<div class="col mt-5">
+						<h3>Проверенная Компания</h3>
+						<p>Надежность. Отправляем туристов только в проверенные экспертами отели.Безопасность. Всегда заключаем договор с клиентами перед началом сотрудничества.
+						</p>
+					</div>
+					<div class="col mt-5">
+						<h3>Индивидуальный Подход</h3>
+						<p>Индивидуальный подход. Мы всегда учитываем ваши пожелания и просьбы, чтобы в итоге предоставить вам лучший тур для осуществления вашей мечты и лучшего отдыха.
+						</p>
+					</div>
+				</div>
+
+			</div>
+			<!-- //container -->
+		</div>
+		<div class="container"> 
+		<div class="form-wrap" id="form">
+			
+			<form action="" class="" style="width:40%" method="post" >
+				<h2>Бронирование</h2>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Фамилия</label>
+					<input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Фамилия" name="surname" required>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Имя</label>
+					<input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Имя" name="name" required>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Отчество</label>
+					<input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Отчество" name="secondname" required>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Номер телефона</label>
+					<input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="phone" required>
+				</div>
+				<div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Дата</label>
+						<input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="date" required>
+	
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Выберите тур</label>
+					<select name="tur" id="exampleInputEmail1" required>
+						{%for tur in turs%}
+					  <option value="{{tur.id}}">{{tur.title}}, {{tur.duration}} ночей, {{tur.price}} BYN</option>
+						{%endfor%}
+					</select>
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Забронировать!</button>
+				{% with messages = get_flashed_messages(True) %}
+		{% if messages %}
+		{% for category, message in messages %}
+		<p class="flash {{category}} my-3">{{message}}</p>
+		{% endfor %}
+		{% endif %}
+		{% endwith %}
+			</form>
+			<img src="../static/images/12.jpg" style="width:50%" alt="">
+		</div>
+			
+			
+	</div>
+		<!-- //before -->
+		<!-- footer -->
+		<div class="footer">
+			<!-- container -->
+			<div class="container">
+				<div class="footer-left">
+					<p></p>
+				</div>
+				<div class="footer-right">
+					<div class="footer-nav">
+						<ul>
+							<li><a href="/">Главная</a></li>                                             
+								<li><a href="#about">О нас</a></li>
+								<li><a href="#form">Бронирование</a></li> 
+								<li><a href="/auth">Вход в систему</a></li> 
+						</ul>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<!-- //container -->
+		</div>
+		<!-- //footer -->
+		<script type="text/javascript">
+									$(document).ready(function() {
+										/*
+										var defaults = {
+								  			containerID: 'toTop', // fading element id
+											containerHoverID: 'toTopHover', // fading element hover id
+											scrollSpeed: 1200,
+											easingType: 'linear' 
+								 		};
+										*/
+										
+										$().UItoTop({ easingType: 'easeOutQuart' });
+										
+									});
+								</script>
+									<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+	<!-- content-Get-in-touch -->
+	</body>
+</html>

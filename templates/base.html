@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Студия отдыха</title>
+		<link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+		
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container" bis_skin_checked="1">
+              <a class="navbar-brand" href="/tur">CRM система</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+      
+              <div class="collapse navbar-collapse" id="navbarsExample07" bis_skin_checked="1">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/tur">Туры</a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/clients">Клиенты</a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/workers">Работники</a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/orders">Заказы</a>
+                  </li>
+                </ul>
+
+
+                
+                <div class="dropdown">
+                    <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                      Профиль
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item disabled" href="#">{{active_user.job}}</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/my-orders">Мои заказы</a>
+                      <a class="dropdown-item" href="/logout">Выйти</a>
+                        
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </nav>
+          {% block main %} {% endblock %}
+
+          <div class="footer ">
+			<!-- container -->
+			<div class="container">
+				<div class="footer-left">
+					<p></p>
+				</div>
+				<div class="footer-right">
+					<div class="footer-nav">
+						<ul>
+							<li><a href="/">Главная</a></li>                                             
+								<li><a href="/#about">О нас</a></li>
+								<li><a href="/#form">Бронирование</a></li> 
+								<li><a href="/tur">Система</a></li> 
+						</ul>
+					</div>
+				</div>
+
+			</div>
+			<!-- //container -->
+		</div>
+	
+	<!-- content-Get-in-touch -->
+	<script src="../static/js/jquery3.min.js"></script>
+	<script src="../static/js/bootstrap.bundle.min.js"></script>
+	<script src="../static/js/bootstrap.min.js"></script>
+
+	</body>
+</html>

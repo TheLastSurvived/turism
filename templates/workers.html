@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% block title %}
+Работники
+{% endblock %}
+
+{% block main %} 
+
+<div class="container">
+	<div class="content my-5">
+		{% with messages = get_flashed_messages(True) %}
+		{% if messages %}
+		{% for category, message in messages %}
+		<p class="flash {{category}}">{{message}}</p>
+		{% endfor %}
+		{% endif %}
+		{% endwith %}
+		<div class="d-flex justify-content-between my-3">
+			<h1>Работники</h1>
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+				Добавить 
+			  </button>
+		</div>
+		
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel">Добавление работника</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			<form method="post">
+				<div class="form-group">
+					<label for="exampleInputPassword1">Фамилия</label>
+					<input type="text" class="form-control" id="exampleInputPassword1" required name="surname">
+				  </div>
+				  <div class="form-group">
+					<label for="exampleInputPassword1">Имя</label>
+					<input type="text" class="form-control" id="exampleInputPassword1" required name="name">
+				  </div>
+				  <div class="form-group">
+					<label for="exampleInputPassword1">Отчество</label>
+					<input type="text" class="form-control" id="exampleInputPassword1" required name="secondname">
+				  </div>
+				<div class="form-group">
+				  <label for="exampleInputPassword1">Номер телефона</label>
+				  <input type="number" class="form-control" id="exampleInputPassword1" required name="phone">
+				</div>
+				<div class="form-group">
+					<label for="exampleInputPassword1">Номер паспорта</label>
+					<input type="number" class="form-control" id="exampleInputPassword1" required name="pasport">
+				  </div>
+				  <div class="form-group">
+					<label for="exampleInputPassword1">Должность</label>
+					<select class="form-select" aria-label="Default select example" required name="job">
+						<option value="Оператор">Оператор</option>
+						<option value="Администратор" {%if active_user.root==0 %} disabled class="text-danger" {%endif%}>Администратор</option>
+						
+						
+					  </select>		
+				  </div>
+				  <div class="form-group">
+					<label for="exampleInputPassword1">Пароль</label>
+					<input type="password" class="form-control" id="exampleInputPassword1" required name="password">
+				  </div>
+				<button type="submit" class="btn btn-primary">Добавить</button>
+			</form>
+		</div>
+	
+	  </div>
+	</div>
+  </div>
+  {% if not workers%}
+  <h2>Список пуст!</h2>
+  {%else%}
+		<table class="table">
+			<thead>
+			  <tr>
+				<th scope="col">#</th>
+				<th scope="col">Фамилия</th>
+				<th scope="col">Имя</th>
+				<th scope="col">Отчество</th>
+				<th scope="col">Номер телефона</th>
+				<th scope="col">Номер паспорта</th>
+				<th scope="col">Должность</th>
+				<th scope="col">#</th>
+				<th scope="col">#</th>
+			  </tr>
+			</thead>
+			<tbody>
+				
+				{%for worker in workers%}
+			  <tr>
+				<th scope="row"></th>
+				<td>{{worker.surname}}</td>
+				<td>{{worker.name}}</td>
+				<td>{{worker.secondname}}</td>
+				<td>{{worker.phone}}</td>
+				<td>{{worker.pasport}}</td>
+				<td>{{worker.job}}</td>
+			
+<td>				<button type="button" class="btn btn-warning {%if active_user.root==0 %} invisible {%endif%}" data-toggle="modal" data-target="#exampleModal{{worker.id}}"> Изменить</button>
+</td>
+				<td><a href="/delete_worker/{{worker.id}}" class="btn btn-danger  {%if active_user.root==0 %} invisible {%endif%}">Удалить</a></td>
+
+
+								 <!-- Modal  -->
+  <div class="modal fade" id="exampleModal{{worker.id}}" tabindex="-1" aria-labelledby="exampleModalLabel{{worker.id}}" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel{{worker.id}}">Изменение работника №{{worker.id}}</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			<form method="post" action="{{url_for('edit_worker',id=worker.id)}}">
+				<div class="form-group">
+					<label for="exampleInputPassword1">Фамилия</label>
+					<input type="text" class="form-control" id="exampleInputPassword1" required name="surname" value="{{worker.surname}}">
+				  </div>
+				  <div class="form-group">
+					<label for="exampleInputPassword1">Имя</label>
+					<input type="text" class="form-control" id="exampleInputPassword1" required name="name" value="{{worker.name}}">
+				  </div>
+				  <div class="form-group">
+					<label for="exampleInputPassword1">Отчество</label>
+					<input type="text" class="form-control" id="exampleInputPassword1" required name="secondname" value="{{worker.secondname}}">
+				  </div>
+				<div class="form-group">
+				  <label for="exampleInputPassword1">Номер телефона</label>
+				  <input type="number" class="form-control" id="exampleInputPassword1" required name="phone" value="{{worker.phone}}">
+				</div>
+				<div class="form-group">
+					<label for="exampleInputPassword1">Номер паспорта</label>
+					<input type="number" class="form-control" id="exampleInputPassword1" required name="pasport" value="{{worker.pasport}}">
+				  </div>
+				  <div class="form-group">
+					<label for="exampleInputPassword1">Должность</label>
+					<select class="form-select" aria-label="Default select example" required name="job">
+						<option value="Оператор">Оператор</option>
+						<option value="Администратор">Администратор</option>
+						
+					  </select>		
+				  </div>
+				<button type="submit" class="btn btn-primary">Изменить</button>
+			</form>
+		</div>
+	
+	  </div>
+	</div>
+  </div>
+			  </tr>
+			  {%endfor%}
+			
+			  </tr>
+			</tbody>
+		  </table>
+		  {%endif%}
+	</div>
+	
+</div>
+{% endblock %}
+     
