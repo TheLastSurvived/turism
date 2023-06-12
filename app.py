@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect, session, url_for, abort
+from flask import Flask, render_template, request, flash, redirect, session, url_for, abort, Response
 from flask_sqlalchemy import SQLAlchemy
 from flask_ckeditor import CKEditor
 from datetime import datetime
@@ -6,7 +6,7 @@ import uuid
 from werkzeug.utils import secure_filename
 import os
 from hashlib import md5
-
+import csv
 
 
 app = Flask(__name__)
@@ -29,7 +29,7 @@ class Client(db.Model):
     name = db.Column(db.String(100))
     surname = db.Column(db.String(100))
     secondname = db.Column(db.String(100))
-    phone = db.Column(db.Integer)
+    phone = db.Column(db.Integer,unique=True)
     order_id = db.relationship('Orders', backref='client', lazy='dynamic')
     
     def __repr__(self):
@@ -41,7 +41,7 @@ class Worker(db.Model):
     surname = db.Column(db.String(100))
     secondname = db.Column(db.String(100))
     phone = db.Column(db.Integer,unique=True)
-    pasport = db.Column(db.Integer)
+    pasport = db.Column(db.Integer,unique=True)
     job = db.Column(db.String(100))
     password = db.Column(db.String(100))
     root = db.Column(db.Integer, default=0)
@@ -176,6 +176,43 @@ def delete_client(id):
     db.session.commit()
     return redirect('/clients')
 
+@app.route('/my-orders-to-csv', methods=['GET', 'POST'])
+def my_orders_to_pdf():
+    if 'name' not in session:
+        abort(401)
+    worker = Worker.query.filter_by(phone=session['name']).first()
+    orders = Orders.query.filter_by(id_worker = worker.id).all()
+    turs = Tur.query.all()
+    clients = Client.query.all()
+    
+    clients_list = []
+    worker_list = []
+    tur_list = []
+    for order in orders:
+        q_client = Client.query.filter_by(id=order.id_client).first()
+        clients_list.append(q_client)
+
+        q_worker = Worker.query.filter_by(id=order.id_worker).first()
+        worker_list.append(q_worker)
+
+        q_tur = Tur.query.filter_by(id=order.id_tur).first()
+        tur_list.append(q_tur)
+
+    FILENAME = "static/orders.csv"
+    with open(FILENAME, "w", newline="") as file:
+        columns = ["Клиент", "Тур", "Дата", "Длительность"]
+        writer = csv.DictWriter(file, fieldnames=columns, delimiter = ",")
+        writer.writeheader()
+        for order,client,tur,worker in zip(orders,clients_list,tur_list,worker_list):
+            fullname = client.surname + " " + client.name
+            writer.writerow({
+                "Клиент": fullname, 
+                "Тур": tur.title,
+                "Дата": order.date,
+                "Длительность": tur.duration
+            })
+
+    return redirect('/' + FILENAME)
 
 @app.route('/my-orders', methods=['GET', 'POST'])
 def my_orders():
@@ -198,9 +235,8 @@ def my_orders():
 
         q_tur = Tur.query.filter_by(id=order.id_tur).first()
         tur_list.append(q_tur)
-
     return render_template("my-orders.html",turs=turs,clients=clients,orders=orders,zip=zip,clients_list=clients_list,worker_list=worker_list, tur_list= tur_list)
-
+    
 @app.route('/orders', methods=['GET', 'POST'])
 def orders():
     if 'name' not in session:
@@ -360,7 +396,11 @@ def edit_worker(id):
 
 @app.route('/delete_worker/<int:id>')
 def delete_worker(id):
+    total_worker = Worker.query.filter_by(phone=session['name']).first()
     worker = Worker.query.get(id)
+    if total_worker.id == worker.id:
+        flash("Произошла ошибка!", category="bad")
+        return redirect(url_for("workers"))
     db.session.delete(worker)
     db.session.commit()
     return redirect('/workers')

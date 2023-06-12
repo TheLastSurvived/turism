@@ -49,7 +49,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<li><a href="/">Главная</a></li>                                             
 								<li><a href="#about">О нас</a></li>
 								<li><a href="#form">Бронирование</a></li> 
+								{%if active_user%}
+								<li><a href="/auth">Система</a></li> 
+								{%else%}
 								<li><a href="/auth">Вход в систему</a></li> 
+								{%endif%}
 							</ul>
 							<!-- script-for-menu -->
 							 <script>
@@ -208,9 +212,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<!-- //container -->
 		</div>
 		<div class="container"> 
-		<div class="form-wrap" id="form">
-			
-			<form action="" class="" style="width:40%" method="post" >
+		<div class="form-wrap row " id="form">
+			<div class="col">
+			<form action="" class=""  method="post" >
 				<h2>Бронирование</h2>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Фамилия</label>
@@ -226,7 +230,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Номер телефона</label>
-					<input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="phone" required>
+					<input type="tel" class="form-control" id="phone1" aria-describedby="emailHelp" name="phone" required placeholder="+375(00)-000-00-00">
 				</div>
 				<div>
 					<div class="form-group">
@@ -253,7 +257,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		{% endif %}
 		{% endwith %}
 			</form>
-			<img src="../static/images/12.jpg" style="width:50%" alt="">
+		</div>
+
+
+			<div class="col">
+				<img src="../static/images/12.jpg" style="width:100%" alt="">
+
+			</div>
 		</div>
 			
 			
@@ -298,5 +308,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								</script>
 									<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 	<!-- content-Get-in-touch -->
+	<script src="https://unpkg.com/imask"></script>
+
+	<script>
+		let element1 = document.getElementById('phone1');
+
+		let maskOptions = {
+		mask: '+{375}(00)-000-00-00'
+		};
+		let mask1 = IMask(element1, maskOptions);
+	   
+	</script>
 	</body>
 </html>

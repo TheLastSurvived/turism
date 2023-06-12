@@ -49,7 +49,7 @@
 				  </div>
 				<div class="form-group">
 				  <label for="exampleInputPassword1">Номер телефона</label>
-				  <input type="number" class="form-control" id="exampleInputPassword1" required name="phone">
+				  <input type="tel" class="form-control" id="phone1" required name="phone" placeholder="+375(00)-000-00-00">
 				</div>
 				<div class="form-group">
 					<label for="exampleInputPassword1">Номер паспорта</label>
@@ -58,7 +58,7 @@
 				  <div class="form-group">
 					<label for="exampleInputPassword1">Должность</label>
 					<select class="form-select" aria-label="Default select example" required name="job">
-						<option value="Оператор">Оператор</option>
+						<option value="Оператор">Менеджер</option>
 						<option value="Администратор" {%if active_user.root==0 %} disabled class="text-danger" {%endif%}>Администратор</option>
 						
 						
@@ -135,7 +135,7 @@
 				  </div>
 				<div class="form-group">
 				  <label for="exampleInputPassword1">Номер телефона</label>
-				  <input type="number" class="form-control" id="exampleInputPassword1" required name="phone" value="{{worker.phone}}">
+				  <input type="tel" class="form-control" id="phone2" required name="phone" value="{{worker.phone}}">
 				</div>
 				<div class="form-group">
 					<label for="exampleInputPassword1">Номер паспорта</label>
@@ -144,7 +144,7 @@
 				  <div class="form-group">
 					<label for="exampleInputPassword1">Должность</label>
 					<select class="form-select" aria-label="Default select example" required name="job">
-						<option value="Оператор">Оператор</option>
+						<option value="Оператор">Менеджер</option>
 						<option value="Администратор">Администратор</option>
 						
 					  </select>		
