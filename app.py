@@ -91,9 +91,16 @@ def index():
                 flash("Дата выбрана неправильно, так как этот день уже прошел!", category="bad")
                 return redirect(url_for("index", _anchor='form'))
             
+            seach_client = Client.query.filter_by(phone=phone).first()
+            print(seach_client)
+            if seach_client:
+                order = Orders(id_client=seach_client.id,id_tur=tur,date=date)
+                db.session.add(order)
+                db.session.commit()
+                flash("Клиент уже есть в системе, бронирование будет оформлено на его!", category="ok")
+                return redirect(url_for("index") + '#form')
             client = Client(name=name, surname=surname,secondname=secondname,phone=phone)
            
-            
             
 
             clients = Client.query.all()
@@ -102,10 +109,10 @@ def index():
             db.session.add(order)
             db.session.commit()
             flash("Успешно!", category="ok")
-            return redirect(url_for("index", _anchor='form'))
+            return redirect(url_for("index", _anchor="form"))
         except:
             flash("Произошла ошибка!", category="bad")
-            return redirect(url_for("index", _anchor='form'))
+            return redirect(url_for("index", _anchor="form"))
     return render_template("index.html",turs=turs)
 
 
